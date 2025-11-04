@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --muted: 280 30% 20%;
     --muted-foreground: 280 20% 65%;
 
-    --accent: 85 85% 55%;
-    --accent-foreground: 280 30% 8%;
+    --accent: 330 85% 65%;
+    --accent-foreground: 280 10% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 280 10% 98%;
@@ -74,8 +74,8 @@ All colors MUST be HSL.
     --muted: 280 30% 20%;
     --muted-foreground: 280 20% 65%;
 
-    --accent: 85 85% 55%;
-    --accent-foreground: 280 30% 8%;
+    --accent: 330 85% 65%;
+    --accent-foreground: 280 10% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 280 10% 98%;
@@ -101,6 +101,6 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-instrument;
   }
 }

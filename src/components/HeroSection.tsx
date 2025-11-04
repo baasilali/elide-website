@@ -35,19 +35,19 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              size="lg" 
-              className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-lg px-8 py-6 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-glow)] hover:scale-105 transition-all"
-            >
-              Get Started
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-foreground/20 text-foreground hover:bg-foreground/10 font-semibold text-lg px-8 py-6"
-            >
-              View Documentation
-            </Button>
+          <Button 
+            size="lg" 
+            className="bg-accent text-accent-foreground hover:bg-accent/90 font-instrument font-semibold text-lg px-8 py-6 shadow-lg hover:scale-105 transition-all"
+          >
+            Get Started
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline"
+            className="border-foreground/20 text-foreground hover:bg-foreground/10 font-instrument font-semibold text-lg px-8 py-6"
+          >
+            View Documentation
+          </Button>
           </div>
         </div>
       </div>
