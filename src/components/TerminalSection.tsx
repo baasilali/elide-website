@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 
 const TerminalSection = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [displayedCommand, setDisplayedCommand] = useState("");
+  const [displayedOutput, setDisplayedOutput] = useState("");
+  const [isTypingCommand, setIsTypingCommand] = useState(true);
   
   const examples = [
     {
@@ -27,15 +30,76 @@ Hello from TypeScript on Elide!`
       output: `Importing Python from TypeScript...
 Python result: [1, 4, 9, 16, 25]
 Cross-language execution complete`
+    },
+    {
+      title: "API Fetch",
+      command: "elide api-request.ts",
+      output: `GET https://api.example.com/users
+✓ 200 OK (124ms)
+{
+  "users": 42,
+  "status": "active"
+}`
+    },
+    {
+      title: "Run Tests",
+      command: "elide test",
+      output: `Running test suite...
+✓ auth.test.ts (3 tests)
+✓ api.test.ts (5 tests)
+✓ utils.test.ts (2 tests)
+
+Tests: 10 passed, 10 total
+Time: 0.89s`
+    },
+    {
+      title: "Build",
+      command: "elide build --optimize",
+      output: `Building project...
+✓ Bundling modules
+✓ Optimizing assets
+✓ Generating types
+
+Build complete in 1.2s
+Output: dist/`
     }
   ];
 
+  // Typewriter effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => (prev + 1) % examples.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [examples.length]);
+    setDisplayedCommand("");
+    setDisplayedOutput("");
+    setIsTypingCommand(true);
+
+    const currentExample = examples[activeTab];
+    let commandIndex = 0;
+    let outputIndex = 0;
+
+    // Type command first
+    const commandInterval = setInterval(() => {
+      if (commandIndex < currentExample.command.length) {
+        setDisplayedCommand(currentExample.command.slice(0, commandIndex + 1));
+        commandIndex++;
+      } else {
+        clearInterval(commandInterval);
+        setIsTypingCommand(false);
+        
+        // Then type output after small delay
+        setTimeout(() => {
+          const outputInterval = setInterval(() => {
+            if (outputIndex < currentExample.output.length) {
+              setDisplayedOutput(currentExample.output.slice(0, outputIndex + 1));
+              outputIndex++;
+            } else {
+              clearInterval(outputInterval);
+            }
+          }, 15);
+        }, 200);
+      }
+    }, 40);
+
+    return () => clearInterval(commandInterval);
+  }, [activeTab]);
 
   return (
     <section id="terminal" className="relative py-24 px-6 md:px-12 bg-background">
@@ -86,19 +150,26 @@ Cross-language execution complete`
               {/* Command Line */}
               <div className="flex items-start gap-2">
                 <span className="text-foreground/60 select-none">$</span>
-                <span className="text-foreground/90">{examples[activeTab].command}</span>
+                <span className="text-foreground/90">
+                  {displayedCommand}
+                  {isTypingCommand && <span className="w-2 h-4 bg-foreground/70 inline-block ml-0.5 animate-pulse" />}
+                </span>
               </div>
               
               {/* Output */}
-              <div className="pl-4 text-muted-foreground whitespace-pre-line leading-relaxed">
-                {examples[activeTab].output}
-              </div>
+              {displayedOutput && (
+                <div className="pl-4 text-white whitespace-pre-line leading-relaxed">
+                  {displayedOutput}
+                </div>
+              )}
               
               {/* Cursor */}
-              <div className="flex items-center gap-2">
-                <span className="text-foreground/60 select-none">$</span>
-                <span className="w-2 h-4 bg-foreground/70 animate-pulse" />
-              </div>
+              {!isTypingCommand && displayedOutput === examples[activeTab].output && (
+                <div className="flex items-center gap-2">
+                  <span className="text-foreground/60 select-none">$</span>
+                  <span className="w-2 h-4 bg-foreground/70 animate-pulse" />
+                </div>
+              )}
             </div>
           </div>
         </div>
