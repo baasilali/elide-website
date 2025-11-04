@@ -105,7 +105,7 @@ Output: dist/`
     <section id="terminal" className="relative py-24 px-6 md:px-12 bg-background">
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
             See Elide in Action
           </h2>
           <p className="text-xl text-muted-foreground">
@@ -114,7 +114,7 @@ Output: dist/`
         </div>
 
         {/* Terminal Window */}
-        <div className="bg-card border border-border rounded-lg overflow-hidden shadow-2xl">
+        <div className="bg-card border border-pink-500/30 rounded-lg overflow-hidden shadow-2xl shadow-pink-500/20">
           {/* Terminal Header */}
           <div className="bg-card/50 border-b border-border px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -134,8 +134,8 @@ Output: dist/`
                   onClick={() => setActiveTab(index)}
                   className={`px-3 py-1 text-xs font-mono rounded transition-colors ${
                     activeTab === index
-                      ? "bg-foreground/10 text-foreground border border-foreground/30"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      ? "bg-gradient-to-r from-pink-500/20 to-fuchsia-500/20 text-pink-300 border border-pink-500/50"
+                      : "text-muted-foreground hover:text-pink-300 hover:bg-pink-500/10"
                   }`}
                 >
                   {example.title}
@@ -149,10 +149,10 @@ Output: dist/`
             <div className="space-y-4">
               {/* Command Line */}
               <div className="flex items-start gap-2">
-                <span className="text-foreground/60 select-none">$</span>
+                <span className="text-pink-400/60 select-none">$</span>
                 <span className="text-foreground/90">
                   {displayedCommand}
-                  {isTypingCommand && <span className="w-2 h-4 bg-foreground/70 inline-block ml-0.5 animate-pulse" />}
+                  {isTypingCommand && <span className="w-2 h-4 bg-gradient-to-b from-pink-400 to-fuchsia-500 inline-block ml-0.5 animate-pulse" />}
                 </span>
               </div>
               
@@ -166,8 +166,8 @@ Output: dist/`
               {/* Cursor */}
               {!isTypingCommand && displayedOutput === examples[activeTab].output && (
                 <div className="flex items-center gap-2">
-                  <span className="text-foreground/60 select-none">$</span>
-                  <span className="w-2 h-4 bg-foreground/70 animate-pulse" />
+                  <span className="text-pink-400/60 select-none">$</span>
+                  <span className="w-2 h-4 bg-gradient-to-b from-pink-400 to-fuchsia-500 animate-pulse" />
                 </div>
               )}
             </div>
@@ -176,22 +176,22 @@ Output: dist/`
 
         {/* Feature Grid Below Terminal */}
         <div className="grid md:grid-cols-3 gap-6 mt-12">
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-6 hover:border-foreground/30 transition-colors">
-            <h3 className="text-lg font-semibold text-foreground mb-2">Single Binary</h3>
+          <div className="bg-card/50 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent mb-2">Single Binary</h3>
             <p className="text-muted-foreground text-sm">
               One runtime for JavaScript, TypeScript, Python, and WASM. No separate installations needed.
             </p>
           </div>
           
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-6 hover:border-foreground/30 transition-colors">
-            <h3 className="text-lg font-semibold text-foreground mb-2">Native Performance</h3>
+          <div className="bg-card/50 backdrop-blur-sm border border-fuchsia-500/30 rounded-lg p-6 hover:border-fuchsia-500/60 hover:shadow-lg hover:shadow-fuchsia-500/20 transition-all">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent mb-2">Native Performance</h3>
             <p className="text-muted-foreground text-sm">
               Built on GraalVM for optimized execution. Competitive with Node.js and faster than CPython.
             </p>
           </div>
           
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-6 hover:border-foreground/30 transition-colors">
-            <h3 className="text-lg font-semibold text-foreground mb-2">Polyglot Ready</h3>
+          <div className="bg-card/50 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 transition-all">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">Polyglot Ready</h3>
             <p className="text-muted-foreground text-sm">
               Import and use code across languages seamlessly. TypeScript calling Python, and vice versa.
             </p>
