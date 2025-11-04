@@ -1,4 +1,48 @@
+import React from 'react';
+
 const AboutSection = () => {
+  const [selectedMetric, setSelectedMetric] = React.useState<'throughput' | 'startup' | 'memory'>('throughput');
+  const [hoveredRuntime, setHoveredRuntime] = React.useState<string | null>(null);
+
+  const performanceData = {
+    throughput: {
+      title: 'Server Throughput',
+      unit: 'K requests/sec',
+      description: 'Higher is better. Measured with plaintext HTTP responses on Linux.',
+      runtimes: [
+        { name: 'Elide', value: 800, color: 'from-pink-400/80 to-pink-500/60', description: 'GraalVM + Netty native transports' },
+        { name: 'Bun', value: 260, color: 'from-white/70 to-white/50', description: 'JavaScriptCore + custom HTTP server' },
+        { name: 'Node.js', value: 110, color: 'from-white/50 to-white/30', description: 'V8 + libuv' },
+        { name: 'Deno', value: 105, color: 'from-white/30 to-white/20', description: 'V8 + Tokio' },
+      ]
+    },
+    startup: {
+      title: 'Startup Time',
+      unit: 'ms',
+      description: 'Lower is better. Time to execute a simple "Hello World" script.',
+      runtimes: [
+        { name: 'Bun', value: 25, color: 'from-white/90 to-white/70', description: 'JavaScriptCore + fast startup' },
+        { name: 'Elide', value: 35, color: 'from-pink-400/80 to-pink-500/60', description: 'GraalVM SubstrateVM' },
+        { name: 'Node.js', value: 45, color: 'from-white/50 to-white/30', description: 'V8 JIT compilation' },
+        { name: 'Deno', value: 50, color: 'from-white/30 to-white/20', description: 'V8 + TypeScript checks' },
+      ]
+    },
+    memory: {
+      title: 'Memory Footprint',
+      unit: 'MB',
+      description: 'Lower is better. Resident memory for a basic HTTP server.',
+      runtimes: [
+        { name: 'Bun', value: 35, color: 'from-white/90 to-white/70', description: 'Optimized for low memory' },
+        { name: 'Elide', value: 45, color: 'from-pink-400/80 to-pink-500/60', description: 'Native image footprint' },
+        { name: 'Deno', value: 65, color: 'from-white/50 to-white/30', description: 'V8 heap + Rust runtime' },
+        { name: 'Node.js', value: 75, color: 'from-white/30 to-white/20', description: 'V8 heap overhead' },
+      ]
+    }
+  };
+
+  const currentData = performanceData[selectedMetric];
+  const maxValue = Math.max(...currentData.runtimes.map(r => r.value));
+
   return (
     <section id="about" className="relative min-h-screen bg-[#0a0a0a] py-24 px-6 md:px-12">
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -57,6 +101,115 @@ const AboutSection = () => {
                 </div>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Performance Comparison Section */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold mb-4 text-center text-white">Performance Comparison</h3>
+          <p className="text-center text-gray-400 mb-8 max-w-2xl mx-auto">
+            Elide delivers exceptional performance across key metrics. Select a metric below to compare.
+          </p>
+
+          {/* Metric Selector */}
+          <div className="flex justify-center gap-3 mb-8">
+            <button
+              onClick={() => setSelectedMetric('throughput')}
+              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                selectedMetric === 'throughput'
+                  ? 'bg-white/10 text-white border border-white/20'
+                  : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              Throughput
+            </button>
+            <button
+              onClick={() => setSelectedMetric('startup')}
+              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                selectedMetric === 'startup'
+                  ? 'bg-white/10 text-white border border-white/20'
+                  : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              Startup Time
+            </button>
+            <button
+              onClick={() => setSelectedMetric('memory')}
+              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                selectedMetric === 'memory'
+                  ? 'bg-white/10 text-white border border-white/20'
+                  : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              Memory
+            </button>
+          </div>
+
+          {/* Chart Container */}
+          <div className="bg-transparent border border-white/10 rounded-xl p-8">
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-white mb-2">{currentData.title}</h4>
+              <p className="text-sm text-gray-400">
+                {selectedMetric === 'throughput' && (
+                  <><span className="text-pink-400">Higher is better.</span> Measured with plaintext HTTP responses on Linux.</>
+                )}
+                {selectedMetric === 'startup' && (
+                  <><span className="text-pink-400">Lower is better.</span> Time to execute a simple "Hello World" script.</>
+                )}
+                {selectedMetric === 'memory' && (
+                  <><span className="text-pink-400">Lower is better.</span> Resident memory for a basic HTTP server.</>
+                )}
+              </p>
+            </div>
+
+            {/* Bar Chart */}
+            <div className="space-y-4">
+              {currentData.runtimes.map((runtime, index) => (
+                <div
+                  key={runtime.name}
+                  className="group"
+                  onMouseEnter={() => setHoveredRuntime(runtime.name)}
+                  onMouseLeave={() => setHoveredRuntime(null)}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-24 text-right">
+                      <span className={`font-semibold ${runtime.name === 'Elide' ? 'text-pink-400' : 'text-white'}`}>{runtime.name}</span>
+                    </div>
+                    <div className="flex-1 relative">
+                      <div className="h-12 bg-white/5 rounded-lg overflow-hidden relative">
+                        <div
+                          className={`h-full bg-gradient-to-r ${runtime.color} transition-all duration-700 ease-out flex items-center justify-end pr-4`}
+                          style={{
+                            width: `${(runtime.value / maxValue) * 100}%`,
+                            transitionDelay: `${index * 100}ms`
+                          }}
+                        >
+                          <span className="text-white font-bold text-sm">
+                            {runtime.value}{currentData.unit === 'ms' ? ' ms' : currentData.unit === 'MB' ? ' MB' : ''}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      {/* Hover Tooltip */}
+                      {hoveredRuntime === runtime.name && (
+                        <div className="absolute left-0 -top-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3 py-2 text-sm text-white whitespace-nowrap z-10 shadow-xl">
+                          {runtime.description}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Source Note */}
+            <div className="mt-6 pt-4 border-t border-white/10">
+              <p className="text-xs text-gray-500 text-center">
+                {selectedMetric === 'throughput' && 'Source: Elide internal benchmarks with plaintext HTTP responses. Independently verified by TechEmpower.'}
+                {selectedMetric === 'startup' && 'Source: Hyperfine benchmarks averaging 200 warmup runs and 200 test runs per runtime.'}
+                {selectedMetric === 'memory' && 'Source: RSS memory usage measured during HTTP server operation with htop.'}
+              </p>
+            </div>
           </div>
         </div>
 
