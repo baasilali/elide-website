@@ -9,32 +9,32 @@ const Navigation = () => {
           <img src={elideLogo} alt="Elide Logo" className="h-8 w-8" />
           <span 
             className="text-2xl font-agrandir font-bold bg-gradient-to-b from-foreground to-muted-foreground bg-clip-text text-transparent" 
-            style={{ letterSpacing: '0.43em' }}
+            style={{ letterSpacing: '0.15em' }}
           >
             ELIDE
           </span>
         </div>
         
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-4 bg-card/50 backdrop-blur-sm px-6 py-2 rounded-full border border-border/50">
           <a 
             href="#about" 
-            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors px-3 py-1"
           >
             About
           </a>
           <a 
             href="#features" 
-            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors px-3 py-1"
           >
             Features
           </a>
           <a 
             href="#docs" 
-            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors px-3 py-1"
           >
             Documentation
           </a>
-          <Button variant="default" size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 font-instrument font-semibold">
+          <Button variant="default" size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 font-instrument font-semibold rounded-full">
             Get Started
           </Button>
         </div>

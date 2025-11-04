@@ -1,6 +1,6 @@
 const AboutSection = () => {
   return (
-    <section id="about" className="relative min-h-screen bg-background py-24 px-6 md:px-12">
+    <section id="about" className="relative min-h-screen bg-[#0a0a0a] py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-[hsl(var(--glow))] bg-clip-text text-transparent">

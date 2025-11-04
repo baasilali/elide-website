@@ -53,11 +53,24 @@ const HeroSection = () => {
       </div>
       
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-1.5 bg-foreground/50 rounded-full animate-pulse" />
-        </div>
-      </div>
+      <a 
+        href="#about" 
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer hover:opacity-80 transition-opacity"
+      >
+        <svg 
+          width="40" 
+          height="40" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          className="text-foreground"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </a>
     </section>
   );
 };
