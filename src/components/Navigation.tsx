@@ -5,7 +5,7 @@ const Navigation = () => {
     <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4 md:px-12">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <img src="/logo.png" alt="Elide Logo" className="h-[135px] w-auto" />
+          <img src="/logo.png" alt="Elide Logo" className="h-12 w-auto" />
         </div>
         
         <div className="hidden md:flex items-center gap-4 bg-card/50 backdrop-blur-sm px-6 py-2 rounded-full border border-border/50">
