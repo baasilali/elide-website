@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-astronaut.png";
+import { useState } from "react";
 
 const HeroSection = () => {
+  const [installMethod, setInstallMethod] = useState<'bash' | 'brew'>('bash');
+
   return (
     <section className="relative min-h-screen flex items-center justify-start overflow-hidden">
       {/* Background Image */}
@@ -17,8 +20,8 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-[hsl(var(--glow))]/10 animate-glow" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-8 md:px-16 py-32">
+        <div className="grid md:grid-cols-[48%_52%] gap-16 items-center">
           {/* Left Column - Hero Text */}
           <div className="text-left">
             <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-foreground text-left">
@@ -46,10 +49,51 @@ const HeroSection = () => {
 
           {/* Right Column - Download Section */}
           <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
-              <h3 className="text-xl font-semibold text-foreground">Download the latest release:</h3>
-              <div className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-lg px-6 py-4 font-mono text-sm text-foreground/90 hover:bg-card/40 transition-colors">
-                curl -sSL --tlsv1.2 elide.sh | bash -s - --install-rev=1.0.0-beta10
+            <h3 className="text-2xl font-bold text-foreground">Download the latest release</h3>
+            
+            <div className="flex flex-col">
+              {/* Tab Buttons */}
+              <div className="flex gap-0">
+                <button
+                  onClick={() => setInstallMethod('bash')}
+                  className={`px-4 py-2 rounded-t-lg font-semibold font-inter transition-all ${
+                    installMethod === 'bash'
+                      ? 'bg-[#0a0a0a] text-foreground border-t border-l border-r border-border/50 border-b-0'
+                      : 'bg-transparent text-foreground/60 hover:text-foreground hover:bg-card/20 border border-transparent'
+                  }`}
+                >
+                  Bash
+                </button>
+                <button
+                  onClick={() => setInstallMethod('brew')}
+                  className={`px-4 py-2 rounded-t-lg font-semibold font-inter transition-all ${
+                    installMethod === 'brew'
+                      ? 'bg-[#0a0a0a] text-foreground border-t border-l border-r border-border/50 border-b-0'
+                      : 'bg-transparent text-foreground/60 hover:text-foreground hover:bg-card/20 border border-transparent'
+                  }`}
+                >
+                  Brew
+                </button>
+              </div>
+
+              {/* Command Display */}
+              <div className="bg-[#0a0a0a] backdrop-blur-sm border border-border/50 rounded-lg rounded-tl-none px-6 py-4 font-mono text-sm text-foreground/90 hover:bg-black/95 transition-colors">
+                {installMethod === 'bash' && (
+                  <div className="flex gap-2">
+                    <span className="text-purple-400">$</span>
+                    <span>
+                      <span className="text-purple-300">curl</span> -sSL --tlsv1.2 <span className="text-purple-300">elide.sh</span> | <span className="text-purple-300">bash</span> -s - --install-rev=1.0.0-beta10
+                    </span>
+                  </div>
+                )}
+                {installMethod === 'brew' && (
+                  <div className="flex gap-2">
+                    <span className="text-purple-400">&gt;</span>
+                    <span>
+                      <span className="text-purple-300">brew tap</span> elide-dev/elide && <span className="text-purple-300">brew install</span> elide
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
