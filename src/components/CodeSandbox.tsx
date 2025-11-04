@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface DemoExample {
   id: string;
@@ -26,6 +28,7 @@ const CodeSandbox = ({ demo }: CodeSandboxProps) => {
   const handleFileChange = (index: number) => {
     setSelectedFile(index);
     setCode(demo.files[index].code);
+    setOutput(""); // Clear output when switching files
   };
 
   const handleRun = () => {
@@ -62,13 +65,29 @@ const CodeSandbox = ({ demo }: CodeSandboxProps) => {
             </div>
           </div>
           
-          <div className="flex-1 p-4 bg-[#0a0a0a]">
-            <textarea
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              className="w-full h-[400px] bg-black/50 border border-white/10 rounded-lg p-4 font-mono text-sm text-gray-100 resize-none focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10"
-              spellCheck={false}
-            />
+          <div className="flex-1 p-4 bg-[#0a0a0a] overflow-auto">
+            <SyntaxHighlighter
+              language={demo.files[selectedFile].language}
+              style={vscDarkPlus}
+              customStyle={{
+                margin: 0,
+                padding: '1rem',
+                background: 'transparent',
+                fontSize: '0.875rem',
+                lineHeight: '1.5',
+                minHeight: '400px',
+              }}
+              showLineNumbers={true}
+              wrapLines={true}
+              lineNumberStyle={{
+                minWidth: '3em',
+                paddingRight: '1em',
+                color: '#6e7681',
+                userSelect: 'none'
+              }}
+            >
+              {code}
+            </SyntaxHighlighter>
           </div>
 
           <div className="p-4 border-t border-white/10 bg-black/30">
@@ -118,7 +137,7 @@ const CodeSandbox = ({ demo }: CodeSandboxProps) => {
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M12 6v6l4 2"/>
               </svg>
-              <span>Simulated output - Real execution coming soon!</span>
+              <span>Simulated output - Browse the code and try running it!</span>
             </div>
           </div>
         </div>

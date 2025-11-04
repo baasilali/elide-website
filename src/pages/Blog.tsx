@@ -30,26 +30,58 @@ const Blog = () => {
         {
           name: "sample.mjs",
           language: "javascript",
-          code: `// Import Python module from JavaScript
+          code: `/**
+ * Elide Polyglot Demo: JavaScript + Python Interop
+ * 
+ * This example shows how to import and call Python functions
+ * directly from JavaScript with zero serialization overhead.
+ */
+
+// Import the Python module just like any JavaScript module
+// Elide handles the language boundary transparently
 import sample from "./greeting.py"
 
-// Call Python function seamlessly
+// Call the Python function as if it were JavaScript
+// No JSON serialization, no separate processes - just works!
 const message = sample.greeting("Elide");
 console.log(message);
 
-// Mix with JavaScript code
+// Mix JavaScript code seamlessly with Python calls
 const answer = 42;
-console.log(\`The answer is \${answer}\`);`
+console.log(\`The answer is \${answer}\`);
+
+// Benefits:
+// ✓ No build step required
+// ✓ Shared memory between languages
+// ✓ Single runtime (no separate Python interpreter)
+// ✓ Native performance with GraalVM JIT`
         },
         {
           name: "greeting.py",
           language: "python",
-          code: `# Python module that can be imported by JavaScript
+          code: `"""
+Python module that can be imported by JavaScript
+
+This Python code runs on GraalVM's Python implementation,
+allowing seamless interop with JavaScript and other languages.
+"""
+
 def greeting(name="World"):
+    """
+    Generate a greeting message.
+    
+    Args:
+        name (str): The name to greet
+        
+    Returns:
+        str: A greeting message
+    """
     return f"Hello from Python, {name}!"
 
 # You can use standard Python libraries
 import sys
+
+# This will be executed when the module is imported
 print(f"Running on Python {sys.version_info.major}.{sys.version_info.minor}")`
         }
       ],
@@ -65,39 +97,77 @@ The answer is 42`
         {
           name: "app.ts",
           language: "typescript",
-          code: `// TypeScript with Python interop
+          code: `/**
+ * TypeScript + Python Integration Demo
+ * 
+ * Run TypeScript directly with no build step, while calling
+ * Python functions with full type safety!
+ */
+
+// Import Python module in TypeScript
+// Elide provides type hints for better IDE support
 import math from "./math.py"
 
-// Full TypeScript type checking
+// TypeScript type checking works as expected
 const numbers: number[] = [1, 2, 3, 4, 5];
 
-// Call Python function
+// Call Python function with TypeScript type annotations
+// The result is properly typed as a number
 const result: number = math.calculate_sum(numbers);
 console.log(\`Sum: \${result}\`);
 
-// Use TypeScript features
+// Use TypeScript interfaces and features
 interface Stats {
   sum: number;
   average: number;
 }
 
+// Calculate statistics using both languages
 const stats: Stats = {
-  sum: result,
-  average: result / numbers.length
+  sum: result,  // From Python
+  average: result / numbers.length  // TypeScript calculation
 };
 
-console.log(\`Average: \${stats.average}\`);`
+console.log(\`Average: \${stats.average}\`);
+
+// Key features demonstrated:
+// ✓ No tsc compilation needed - run TypeScript directly
+// ✓ Full type checking at development time
+// ✓ Seamless Python function calls with type safety
+// ✓ Best of both worlds: Python's simplicity + TypeScript's safety`
         },
         {
           name: "math.py",
           language: "python",
-          code: `# Python math utilities
+          code: `"""
+Python Math Utilities Module
+
+These functions can be called from TypeScript with
+full type safety and zero overhead.
+"""
+
 def calculate_sum(numbers):
-    """Calculate sum of a list of numbers"""
+    """
+    Calculate the sum of a list of numbers.
+    
+    Args:
+        numbers (list): List of numbers to sum
+        
+    Returns:
+        int/float: The sum of all numbers
+    """
     return sum(numbers)
 
 def calculate_average(numbers):
-    """Calculate average of a list of numbers"""
+    """
+    Calculate the average of a list of numbers.
+    
+    Args:
+        numbers (list): List of numbers to average
+        
+    Returns:
+        float: The average value, or 0 if list is empty
+    """
     if len(numbers) == 0:
         return 0
     return sum(numbers) / len(numbers)`
@@ -115,45 +185,74 @@ Average: 3`
         {
           name: "server.mjs",
           language: "javascript",
-          code: `// Simple HTTP server with Elide
+          code: `/**
+ * High-Performance HTTP Server with Elide
+ * 
+ * Elide includes a built-in HTTP server powered by Netty
+ * that can handle 800K+ requests per second on Linux.
+ * 
+ * This server supports:
+ * - HTTP/1.1, HTTP/2, and HTTP/3
+ * - WebSockets
+ * - Server-Sent Events (SSE)
+ * - Non-blocking I/O
+ */
+
+// Define server configuration
 const server = {
   port: 8080,
   
+  // Request handler using modern Web APIs
+  // Similar to Deno and Bun's approach
   async handler(req) {
+    // Parse the request URL
     const url = new URL(req.url);
     
+    // Route: Homepage
     if (url.pathname === '/') {
+      // Return a simple text response
       return new Response('Hello from Elide!', {
         headers: { 'Content-Type': 'text/plain' }
       });
     }
     
+    // Route: API endpoint returning JSON
     if (url.pathname === '/api/data') {
+      // Use Response.json() for automatic serialization
       return Response.json({
         message: 'API Response',
         timestamp: Date.now(),
-        runtime: 'Elide'
+        runtime: 'Elide',
+        version: '1.0.0-beta10'
       });
     }
     
-    return new Response('Not Found', { status: 404 });
+    // Default: 404 Not Found
+    return new Response('Not Found', { 
+      status: 404,
+      headers: { 'Content-Type': 'text/plain' }
+    });
   }
 };
 
-console.log(\`Server starting on port \${server.port}...\`);
-console.log('Try: curl http://localhost:8080/');
-console.log('Try: curl http://localhost:8080/api/data');`
+// Start the server
+console.log(\`🚀 Server starting on port \${server.port}...\`);
+console.log('📝 Try these commands:');
+console.log('   curl http://localhost:8080/');
+console.log('   curl http://localhost:8080/api/data');`
         }
       ],
-      output: `Server starting on port 8080...
-Try: curl http://localhost:8080/
-Try: curl http://localhost:8080/api/data
+      output: `🚀 Server starting on port 8080...
+📝 Try these commands:
+   curl http://localhost:8080/
+   curl http://localhost:8080/api/data
 
 > curl http://localhost:8080/
 Hello from Elide!
 
 > curl http://localhost:8080/api/data
-{"message":"API Response","timestamp":1699123456789,"runtime":"Elide"}`
+{"message":"API Response","timestamp":1699123456789,"runtime":"Elide","version":"1.0.0-beta10"}`
+
     },
     {
       id: "polyglot-power",
@@ -164,47 +263,113 @@ Hello from Elide!
         {
           name: "main.mjs",
           language: "javascript",
-          code: `// Main application orchestrator
+          code: `/**
+ * Full Polyglot Application Demo
+ * 
+ * This example demonstrates Elide's true power: mixing
+ * JavaScript, Python, and Kotlin in a single application.
+ * 
+ * All languages share:
+ * - Same memory space (no serialization)
+ * - Same garbage collector
+ * - Same JIT compiler optimizations
+ */
+
+// Import Python module for data analytics
 import analytics from "./analytics.py"
+
+// Import Kotlin module for utility functions
 import utils from "./utils.kt"
 
 console.log("=== Elide Polyglot Demo ===\\n");
 
-// Call Python for data processing
+// Sample data to analyze
 const data = [100, 200, 150, 300, 250];
+
+// Use Python for data processing
+// Python excels at data manipulation
 const stats = analytics.analyze(data);
 
-console.log("Python Analytics:");
+console.log("📊 Python Analytics:");
 console.log(\`  Average: \${stats.average}\`);
 console.log(\`  Max: \${stats.max}\`);
+console.log(\`  Min: \${stats.min}\`);
+console.log(\`  Count: \${stats.count}\`);
 
-// Call Kotlin for formatting
+// Use Kotlin for string formatting
+// Kotlin provides strong typing and excellent string handling
 const formatted = utils.formatCurrency(stats.average);
-console.log(\`\\nKotlin Formatter: \${formatted}\`);
+const percentChange = utils.formatPercentage(0.15);
 
-console.log("\\n✨ Three languages, one runtime!");`
+console.log(\`\\n💰 Kotlin Formatter:\`);
+console.log(\`  Average as currency: \${formatted}\`);
+console.log(\`  Sample percentage: \${percentChange}\`);
+
+console.log("\\n✨ Three languages, one runtime!");
+console.log("   No serialization, no IPC, just pure performance.");`
         },
         {
           name: "analytics.py",
           language: "python",
-          code: `# Python data analytics module
+          code: `"""
+Python Data Analytics Module
+
+Python is excellent for data processing and analysis.
+This module demonstrates using Python's built-in functions
+for statistical calculations.
+"""
+
 def analyze(data):
-    """Analyze numerical data"""
+    """
+    Analyze a list of numerical data.
+    
+    This function leverages Python's built-in functions
+    like sum(), max(), min(), and len() which are highly
+    optimized in GraalPython.
+    
+    Args:
+        data (list): List of numbers to analyze
+        
+    Returns:
+        dict: Dictionary containing statistical measures
+    """
     return {
         'average': sum(data) / len(data),
         'max': max(data),
         'min': min(data),
         'count': len(data)
-    }`
+    }
+
+# You could also use NumPy, Pandas, etc.
+# All Python libraries are supported!`
         },
         {
           name: "utils.kt",
           language: "kotlin",
-          code: `// Kotlin utility functions
+          code: `/**
+ * Kotlin Utility Functions
+ * 
+ * Kotlin provides excellent type safety and expressive syntax
+ * for utility functions. These can be called from JavaScript
+ * or any other language in the Elide runtime.
+ */
+
+/**
+ * Format a number as USD currency.
+ * 
+ * @param amount The amount to format
+ * @return Formatted currency string (e.g., "$200.00")
+ */
 fun formatCurrency(amount: Double): String {
     return "$%.2f".format(amount)
 }
 
+/**
+ * Format a decimal as a percentage.
+ * 
+ * @param value The decimal value (0.15 = 15%)
+ * @return Formatted percentage string (e.g., "15.0%")
+ */
 fun formatPercentage(value: Double): String {
     return "%.1f%%".format(value * 100)
 }`
@@ -212,13 +377,18 @@ fun formatPercentage(value: Double): String {
       ],
       output: `=== Elide Polyglot Demo ===
 
-Python Analytics:
+📊 Python Analytics:
   Average: 200
   Max: 300
+  Min: 100
+  Count: 5
 
-Kotlin Formatter: $200.00
+💰 Kotlin Formatter:
+  Average as currency: $200.00
+  Sample percentage: 15.0%
 
-✨ Three languages, one runtime!`
+✨ Three languages, one runtime!
+   No serialization, no IPC, just pure performance.`
     }
   ];
 
@@ -304,7 +474,7 @@ Kotlin Formatter: $200.00
                 Interactive Demos
               </h2>
               <p className="text-lg text-gray-400 max-w-2xl mx-auto font-inter">
-                Experience Elide's polyglot capabilities firsthand. Click a demo to try it out.
+                Explore Elide's polyglot capabilities with detailed, commented examples. Click a demo to view the code with IDE-like syntax highlighting.
               </p>
             </div>
             
