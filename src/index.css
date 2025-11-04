@@ -6,6 +6,27 @@
 All colors MUST be HSL.
 */
 
+@font-face {
+  font-family: 'Agrandir Grand';
+  src: url('/fonts/Agrandir-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Agrandir Grand';
+  src: url('/fonts/Agrandir-GrandLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Agrandir Grand';
+  src: url('/fonts/Agrandir-GrandHeavy.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --background: 280 30% 8%;
@@ -102,5 +123,14 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-instrument;
+  }
+}
+
+@layer utilities {
+  .grid-pattern {
+    background-image: 
+      linear-gradient(to right, hsl(0 0% 100% / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(0 0% 100% / 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 }
