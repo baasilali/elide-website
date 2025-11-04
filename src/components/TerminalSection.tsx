@@ -108,7 +108,7 @@ Output: dist/`
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
             See Elide in Action
           </h2>
-          <p className="text-xl text-white">
+          <p className="text-xl text-white font-inter">
             Run multiple languages with a single runtime
           </p>
         </div>
@@ -178,21 +178,21 @@ Output: dist/`
         <div className="grid md:grid-cols-3 gap-6 mt-12">
           <div className="bg-card/50 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
             <h3 className="text-lg font-semibold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">Single Binary</h3>
-            <p className="text-white text-sm">
+            <p className="text-white text-sm font-inter">
               One runtime for JavaScript, TypeScript, Python, and WASM. No separate installations needed.
             </p>
           </div>
           
           <div className="bg-card/50 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
             <h3 className="text-lg font-semibold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">Native Performance</h3>
-            <p className="text-white text-sm">
+            <p className="text-white text-sm font-inter">
               Built on GraalVM for optimized execution. Competitive with Node.js and faster than CPython.
             </p>
           </div>
           
           <div className="bg-card/50 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
             <h3 className="text-lg font-semibold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">Polyglot Ready</h3>
-            <p className="text-white text-sm">
+            <p className="text-white text-sm font-inter">
               Import and use code across languages seamlessly. TypeScript calling Python, and vice versa.
             </p>
           </div>

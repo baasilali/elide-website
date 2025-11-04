@@ -50,7 +50,7 @@ const AboutSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 via-pink-500 to-rose-400 bg-clip-text text-transparent">
             One Runtime, Every Language
           </h2>
-          <p className="text-xl text-white max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto font-inter">
             Elide combines the best of all worlds: the reach of JavaScript, the safety of TypeScript, 
             the simplicity of Python, and the power of Kotlin — all in a single, blazing-fast runtime.
           </p>
@@ -61,16 +61,16 @@ const AboutSection = () => {
             <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent">
               What is Elide?
             </h3>
-            <p className="text-lg text-white leading-relaxed mb-4">
+            <p className="text-lg text-white leading-relaxed mb-4 font-inter">
               Elide is an <span className="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent font-semibold">all-in-one, AI-native polyglot runtime</span> powered 
               by GraalVM. Think of it as Node.js or Python, but with superpowers: run JavaScript, TypeScript, Python, and Kotlin 
               in a single binary, with seamless interoperability between languages.
             </p>
-            <p className="text-lg text-white leading-relaxed mb-4">
+            <p className="text-lg text-white leading-relaxed mb-4 font-inter">
               No build steps. No separate installations. No compromise on performance. Import Python libraries from TypeScript, 
               call Kotlin from JavaScript, or mix all languages in one project — Elide handles the complexity.
             </p>
-            <p className="text-lg text-white leading-relaxed">
+            <p className="text-lg text-white leading-relaxed font-inter">
               Built on battle-tested technology and independently benchmarked by TechEmpower, Elide delivers 
               native-level performance while maintaining the developer experience you love.
             </p>
@@ -83,21 +83,21 @@ const AboutSection = () => {
                 <div className="w-2 h-2 rounded-full bg-gradient-to-br from-pink-400 to-rose-400 mt-2 flex-shrink-0" />
                 <div>
                   <h5 className="font-semibold text-white mb-1">True Polyglot Execution</h5>
-                  <p className="text-white">Mix JavaScript, TypeScript, Python, and Kotlin seamlessly. Import across language boundaries with zero friction.</p>
+                  <p className="text-white font-inter">Mix JavaScript, TypeScript, Python, and Kotlin seamlessly. Import across language boundaries with zero friction.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-br from-fuchsia-400 to-pink-400 mt-2 flex-shrink-0" />
                 <div>
                   <h5 className="font-semibold text-white mb-1">Native Performance</h5>
-                  <p className="text-white">800K+ requests/second on Linux. Competitive with Node.js, faster than CPython, powered by GraalVM JIT.</p>
+                  <p className="text-white font-inter">800K+ requests/second on Linux. Competitive with Node.js, faster than CPython, powered by GraalVM JIT.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-400 mt-2 flex-shrink-0" />
                 <div>
                   <h5 className="font-semibold text-white mb-1">AI-Native Runtime</h5>
-                  <p className="text-white">Built-in AI APIs with llama.cpp integration. Run local LLMs, integrate HuggingFace models, all from your code.</p>
+                  <p className="text-white font-inter">Built-in AI APIs with llama.cpp integration. Run local LLMs, integrate HuggingFace models, all from your code.</p>
                 </div>
               </li>
             </ul>
@@ -107,7 +107,7 @@ const AboutSection = () => {
         {/* Performance Comparison Section */}
         <div className="mb-20">
           <h3 className="text-3xl font-bold mb-4 text-center text-white">Performance Comparison</h3>
-          <p className="text-center text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-center text-gray-400 mb-8 max-w-2xl mx-auto font-inter">
             Elide delivers exceptional performance across key metrics. Select a metric below to compare.
           </p>
 
@@ -149,7 +149,7 @@ const AboutSection = () => {
           <div className="bg-transparent border border-white/10 rounded-xl p-8">
             <div className="mb-6">
               <h4 className="text-xl font-bold text-white mb-2">{currentData.title}</h4>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-400 font-inter">
                 {selectedMetric === 'throughput' && (
                   <><span className="text-pink-400">Higher is better.</span> Measured with plaintext HTTP responses on Linux.</>
                 )}
@@ -204,7 +204,7 @@ const AboutSection = () => {
 
             {/* Source Note */}
             <div className="mt-6 pt-4 border-t border-white/10">
-              <p className="text-xs text-gray-500 text-center">
+              <p className="text-xs text-gray-500 text-center font-inter">
                 {selectedMetric === 'throughput' && 'Source: Elide internal benchmarks with plaintext HTTP responses. Independently verified by TechEmpower.'}
                 {selectedMetric === 'startup' && 'Source: Hyperfine benchmarks averaging 200 warmup runs and 200 test runs per runtime.'}
                 {selectedMetric === 'memory' && 'Source: RSS memory usage measured during HTTP server operation with htop.'}
@@ -219,28 +219,28 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-card/50 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
               <h4 className="text-xl font-semibold mb-3 bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent">Web Applications</h4>
-              <p className="text-white text-sm">
+              <p className="text-white text-sm font-inter">
                 Built-in high-performance server with HTTP/2, HTTP/3, and WebSockets. Deploy full-stack apps in one binary.
               </p>
             </div>
             
             <div className="bg-card/50 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
               <h4 className="text-xl font-semibold mb-3 bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent">CLI Tools</h4>
-              <p className="text-white text-sm">
+              <p className="text-white text-sm font-inter">
                 Ship native binaries or scripts. Run TypeScript directly with no build step. Support for LSP and MCP protocols.
               </p>
             </div>
             
             <div className="bg-card/50 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
               <h4 className="text-xl font-semibold mb-3 bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent">AI Applications</h4>
-              <p className="text-white text-sm">
+              <p className="text-white text-sm font-inter">
                 Embed local LLMs directly in your apps. Stream inference results. Download and cache models from HuggingFace.
               </p>
             </div>
             
             <div className="bg-card/50 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-lg hover:shadow-pink-500/20 transition-all">
               <h4 className="text-xl font-semibold mb-3 bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent">Build Systems</h4>
-              <p className="text-white text-sm">
+              <p className="text-white text-sm font-inter">
                 Compile to JVM bytecode, build native images, create container images — all without Docker or complex tooling.
               </p>
             </div>
@@ -251,7 +251,7 @@ const AboutSection = () => {
           <div className="bg-gradient-to-br from-pink-500/10 to-fuchsia-500/10 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/30 transition-all">
             <div className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-3">800K+</div>
             <h4 className="text-xl font-semibold mb-2 text-white">Requests Per Second</h4>
-            <p className="text-white">
+            <p className="text-white font-inter">
               Independently benchmarked by TechEmpower. Native performance powered by GraalVM with non-blocking I/O.
             </p>
           </div>
@@ -259,7 +259,7 @@ const AboutSection = () => {
           <div className="bg-gradient-to-br from-pink-500/10 to-fuchsia-500/10 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/30 transition-all">
             <div className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-3">4+</div>
             <h4 className="text-xl font-semibold mb-2 text-white">Languages Supported</h4>
-            <p className="text-white">
+            <p className="text-white font-inter">
               JavaScript, TypeScript, Python, Kotlin, and more. Mix them freely with full interop and shared runtime state.
             </p>
           </div>
@@ -267,7 +267,7 @@ const AboutSection = () => {
           <div className="bg-gradient-to-br from-pink-500/10 to-fuchsia-500/10 border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/30 transition-all">
             <div className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-3">1</div>
             <h4 className="text-xl font-semibold mb-2 text-white">Binary</h4>
-            <p className="text-white">
+            <p className="text-white font-inter">
               No separate runtimes or interpreters. Everything you need ships in a single, optimized native binary.
             </p>
           </div>
@@ -300,7 +300,7 @@ const AboutSection = () => {
             </div>
             <h3 className="relative text-3xl font-bold bg-gradient-to-r from-pink-300 via-fuchsia-300 to-purple-300 bg-clip-text text-transparent">Open Source & Community Driven</h3>
           </div>
-          <p className="text-lg text-white max-w-3xl mx-auto mb-8">
+          <p className="text-lg text-white max-w-3xl mx-auto mb-8 font-inter">
             Elide is fully open source under the MIT license. We believe in building in public and welcome 
             contributions from developers of all skill levels. Whether it's code, documentation, bug reports, 
             or feature ideas — your contributions help make Elide better for everyone.
@@ -323,7 +323,7 @@ const AboutSection = () => {
               Join Discord
             </a>
           </div>
-          <p className="text-sm text-white mt-6">
+          <p className="text-sm text-white mt-6 font-inter">
             Check out our <a href="https://docs.elide.dev" className="bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent underline hover:no-underline">contributing guide</a> to get started
           </p>
         </div>
