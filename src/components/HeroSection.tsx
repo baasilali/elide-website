@@ -18,36 +18,32 @@ const HeroSection = () => {
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32">
-        <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-foreground">
+        <div className="max-w-3xl text-left">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-foreground text-left">
             The next generation of{" "}
             <span className="bg-gradient-to-r from-primary via-[hsl(var(--glow))] to-primary bg-clip-text text-transparent animate-float">
               runtime development
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-foreground/80 mb-4 leading-relaxed">
+          <p className="text-xl md:text-2xl text-foreground/80 mb-4 leading-relaxed text-left">
             Elide is a powerful runtime development tool with native Polyglot capabilities.
           </p>
           
-          <p className="text-lg md:text-xl text-foreground/70 mb-8">
+          <p className="text-lg md:text-xl text-foreground/70 mb-8 text-left">
             A modern alternative to Node.js, Deno, and Bun—built for the future.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
-          <Button 
-            size="lg" 
-            className="bg-accent text-accent-foreground hover:bg-accent/90 font-instrument font-semibold text-lg px-8 py-6 shadow-lg hover:scale-105 transition-all"
-          >
-            Get Started
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="border-foreground/20 text-foreground hover:bg-foreground/10 font-instrument font-semibold text-lg px-8 py-6"
-          >
-            View Documentation
-          </Button>
+          <div className="flex flex-col gap-4 items-start">
+            <Button 
+              size="lg" 
+              className="bg-accent text-accent-foreground hover:bg-accent/90 font-instrument font-semibold text-lg px-8 py-6 shadow-lg hover:scale-105 transition-all"
+            >
+              Get Started
+            </Button>
+            <div className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-lg px-6 py-4 font-mono text-sm text-foreground/90 hover:bg-card/40 transition-colors">
+              curl -sSL --tlsv1.2 elide.sh | bash -s - --install-rev=1.0.0-beta10
+            </div>
           </div>
         </div>
       </div>
