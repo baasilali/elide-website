@@ -102,7 +102,7 @@ Output: dist/`
   }, [activeTab]);
 
   return (
-    <section id="terminal" className="relative py-24 px-6 md:px-12 bg-background">
+    <section id="terminal" className="relative py-24 px-6 md:px-12 bg-[#0a0a0a]">
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
